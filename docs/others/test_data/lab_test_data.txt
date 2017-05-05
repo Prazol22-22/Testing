@@ -1,0 +1,50 @@
+2012,2,12,,,E,Ethy,Teqpi,14/11/1951,F,1 ma,,Horqp,A,21,,,N,28/06/2016,ALqi ,1,6-2,29,U/L,N
+12,,,,,E,Cam,Roqpi,23/12/1951,M,4 N ,,Bucqp,,,98,,N,15/04/2016,Toqii,2,6.28.1,6.3,g/dL,N
+2,,,,,E,Gil,Trqpi,07/09/1951,M,2  N,,Denqpprings,,,98,,N,27/02/2016,Alqio,6,40215,70,U/L,N
+2,,,,,E,Smi,Stqpin,07/09/1951,M,5 Sc,,Molqp,,,98,,N,30/11/2016,Toqii,2,6.28.1,7.1,g/dL,N
+2,4,,,,E,Cam,Roqpi,15/08/1951,M,4 N ,,Bucqp,,78,98,,N,15/04/2016,Glqi ,1,6529,145,mg/dL,H
+2,,,,,E,Gil,Trqpi,01/06/1951,M,2  N,,Denqpprings,,,98,,N,27/02/2016,Poqi ,2,3.25.3,4.2,mmol/L,N
+2,,16,,,E,Rin,Miqpil,07/09/1951,M,2 ee,,Easqptford,,,98,,N,01/02/2016,Blqiu,8,< 20,120,mmHg,H
+2,,,,,E,Hil,Beqpiin,17/12/1951,M,2 Pi,,Remqp,D,,98,,N,22/07/2016,Toqii,2,6.28.1,7.0,g/dL,N
+2,,,,,E,Sha,Haqpi,05/01/1952,M,6 Wi,,Houqp,,,98,,N,18/02/2016,Toqis,2,122199,176,mg/dL,N
+2,2,,,,E,Jor,Paqpik,28/06/1952,M,1  G,,Bayqptte,,90,98,,N,10/01/2016,Noqil,4,< 20,133,mg/dL,N
+2,,2,,,E,Ric,Jiqpin,31/07/1952,F,2 et,,Wesqptford,,,98,,N,11/05/2016,Crqi ,2,0.2-1.10,0.94,mg/dL,N
+2,,,,,E,Whi,Jeqpiey,11/05/1952,M,P x ,,Mt qp,,,98,,N,02/08/2016,Trqie,2,< 20,166,mg/dL,H
+2,,,,,E,Rin,Miqpil,05/01/1952,M,2 ee,,Easqptford,,,98,,N,01/02/2016,Urqie,3,7-2,16,mg/dL,N
+2,,,,,E,Pet,Daqpi,05/01/1952,M,2 We,,Cumqp,,8,98,,N,04/05/2016,Toqis,2,122199,167,mg/dL,N
+2,5,,,,E,Lan,Maqpi,28/06/1952,M,1  C,,Gonqp,,,98,,N,20/11/2016,Alqio,6,40215,80,U/L,N
+2,,,,,E,Fox,Roqpi,31/07/1952,M,1  P,,Gonqp,F,,98,,N,19/04/2016,Alqi ,1,3.25.1,4.2,g/dL,N
+2,,7,,,E,Rou,Skqpir,11/05/1952,M,8 ou,,Cleqpd,,,98,,N,14/11/2016,Caqii,2,2021,30,mmol/L,N
+2,,,,,E,Sae,Iaqpi,05/01/1952,M,1 Ne,,Holqp,,,98,,N,23/12/2016,Crqi ,2,0.2-1.35,1.00,mg/dL,N
+2,,,,,E,Gar,Joqpi,07/09/1951,M,3 Lu,,Sacqpto,,,98,,N,07/09/2016,ALqi ,1,9-2,41,U/L,N
+2,,,,,E,Gar,Joqpi,07/09/1951,M,3 Lu,,Sacqpto,,,98,,N,07/09/2016,Alqio,6,40215,64,U/L,N
+2,,,,,E,Mar,Doqpi,15/08/1951,M,1 tt,,Winqp,,,98,,N,15/08/2016,Boqin,3,182-24.9,25.5,(calc),H
+2,,,,,E,Tom,Paqpi,01/06/1951,M,4  S,,Lodqp,,,98,,N,01/06/2016,Glqi ,1,1.23.7,2.3,g/dL (calc),N
+2,,,,,E,Gar,Joqpi,07/09/1951,M,3 Lu,,Sacqpto,,,98,,N,07/09/2016,Soqi ,2,132146,141,mmol/L,N
+2,,,,,E,Sha,Joqpi,17/12/1951,M,2  F,,Jetqplle,,,98,,N,17/12/2016,Blqiu,8,< 2,60,mmHg,N
+2,,,,,E,Tra,Biqpi,03/09/1951,M,1  A,,Lasqps,,,98,,N,03/09/2016,Urqie,3,7-2,12,mg/dL,N
+2,,,,,E,Mun,Erqpi,30/12/1951,M,7 an,,Souqpriden,,,98,,N,30/12/2016,Caqii,2,2021,31,mmol/L,N
+2,,,,,E,Con,Baqpi,19/02/1951,M,8 Bo,,Rosqpe,H,,98,,N,19/02/2016,eGqia,3,> 2 = 60,86,mL/min/1.73m2,N
+2,,,,,E,Har,Lyqpi,01/10/1951,F,6 ok,,Worqpr,,,98,,N,01/10/2016,Heqi ,3,2,64,inches,NA
+2,,,,,E,Lop,Viqpiia,10/04/1951,F,1  C,,Houqp,,9,98,,N,10/04/2016,Poqi ,2,3.25.3,4.5,mmol/L,N
+2,,,,,E,Low,Roqpi,06/02/1951,M,3 Wh,,Batqpuge,,,98,,N,06/02/2016,Noqil,4,< 20,138,mg/dL,N
+2,,6,,,E,Sha,Naqpil,21/03/1951,M,3 cD,,Sacqpto,,,98,,N,21/03/2016,Chqi ,2,98210,103,mmol/L,N
+2,,,,,E,Hay,Brqpi,28/09/1951,M,1  E,,Geoqpwn,,,98,,N,28/09/2016,Boqin,3,182-24.9,27.6,(calc),H
+2,,,,,E,Gra,Juqpi,14/09/1951,M,1 or,,Manqp,,,98,,N,14/09/2016,eGqia,3,> 2 = 60,114,mL/min/1.73m2,N
+2,,,,,E,Sul,Abqpil,12/09/1951,F,1 Wa,,Houqp,,,98,,N,12/09/2016,Caqi ,1,8.210.2,9.4,mg/dL,N
+2,,,,,E,Ser,Olqpi,05/01/1952,M,1 Ev,,Rosqpe,,,98,,N,05/01/2016,ASqi ,1,1020,22,U/L,N
+2,,,,,E,Ethy,Teqpi,28/06/1952,M,1 We,,Syoqp,,,98,,N,28/06/2016,Weqi ,3,2,142,lbs,NA
+2,,,,,E,Bou,Keqpi,31/07/1952,M,2 ou,,Wesqpter,,,98,,N,31/07/2016,Alqio,6,40215,26,U/L,L
+2,,,,,E,Ric,Jiqpin,11/05/1952,F,2 et,,Wesqptford,,,98,,N,11/05/2016,eGqia,3,> 2 = 60,94,mL/min/1.73m2,N
+2,,,,,E,Ser,Olqpi,05/01/1952,M,1 Ev,,Rosqpe,,,98,,N,05/01/2016,Chqi ,2,98210,104,mmol/L,N
+2,,,,,E,Pri,Ryqpi,23/02/1952,M,1 we,,Easqppton,,9,98,,N,23/02/2016,ASqi ,1,1020,13,U/L,N
+2,,,,,E,Hay,Brqpi,28/09/1952,M,1  E,,Geoqpwn,,,98,,N,28/09/2016,HDqie,2,> 2 = 40,39,mg/dL,L
+2,,,,,E,War,Toqpi,21/06/1952,M,4 Ja,,Milqp,,,98,,N,21/06/2016,Trqie,2,< 20,162,mg/dL,H
+2,,,,,E,She,Maqpi,28/08/1952,M,1  S,,Susqple,,,98,,N,28/08/2016,Toqii,2,6.28.1,6.4,g/dL,N
+2,,,,,E,Bro,Shqpi,13/11/1952,F,3 ee,,Tinqpalls,,,98,,N,13/11/2016,Noqil,4,< 20,190,mg/dL,H
+2,,,,,E,Eve,Paqpi,19/08/1952,M,1  S,,Houqp,,9,98,,N,19/08/2016,Waqim,8,< 2 = 40,42,in,H
+2,,,,,E,Whi,Jeqpiey,02/08/1952,M,P x ,,Mt qp,,,98,,N,02/08/2016,Noqil,4,< 20,130,mg/dL,N
+2,,,,,E,Wei,Joqpi,23/09/1952,M,1  L,,Batqpuge,,,98,,N,23/09/2016,ASqi ,1,1025,29,U/L,N
+2,,,,,E,Mar,Kyqpi,20/07/1952,M,5 Gi,,Carqpel,,8,98,,N,20/07/2016,Crqi ,2,0.2-1.35,0.70,mg/dL,N
+2,,,,,E,RUS,LAqpi,23/01/1952,M,2 EAAY,,KISqpE,,,98,,N,23/01/2016,Weqi ,3,2,165,lbs,NA
+2,,,,,E,Wei,Joqpi,23/09/1952,M,1  L,,Batqpuge,,,98,,N,23/09/2016,Blqiu,8,< 20,125,mmHg,H

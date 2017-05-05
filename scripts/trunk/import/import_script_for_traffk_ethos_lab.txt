@@ -1,0 +1,237 @@
+/* *********************** Import script of Traffk for RedShift ********************************* 
+client name		:	Traffk
+client id		:	
+File Type		:	Lab
+Layout			:	Comma Delimited
+Create date		:	2016-11-02
+Create by		:	Sasin Chand Pradhan			
+****************************************************************************** */
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------create temp table 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+create table raw_tfk.temp_traffk_20160926_Ethos_questdiagnostics
+(
+data varchar(max)
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------Copy data to temp table---------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+copy raw_tfk.temp_traffk_20160926_Ethos_questdiagnostics
+from 
+'s3://incoming-das-scrub/traffk/20160926/Ethos/questdiagnostics/'
+credentials 'aws_access_key_id=*****************;aws_secret_access_key=**************'
+;
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------create rstage table 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+create table raw_tfk.rstag_traffk_20160926_Ethos_questdiagnostics
+(
+CLIENT_ID  varchar(200),
+MPI  varchar(200),
+UNIQUE_ID  varchar(200),
+SSN  varchar(200),
+INSURANCE_ID  varchar(200),
+RELATION_CODE  varchar(200),
+LAST_NAME  varchar(200),
+FIRST_NAME  varchar(200),
+DOB  varchar(200),
+SEX  varchar(200),
+ADDRESS1  varchar(200),
+ADDRESS2  varchar(200),
+CITY  varchar(200),
+STATE  varchar(200),
+ZIP  varchar(200),
+LOCATION_CODE  varchar(200),
+CUSTOM1  varchar(200),
+AMENDED_RESULT  varchar(200),
+COLLECTION_DATE  varchar(200),
+RESULT_NAME  varchar(200),
+LOINC  varchar(200),
+REFERENCE_RANGE  varchar(200),
+OBSERVATION_VALUE  varchar(200),
+UNITS  varchar(200),
+ABNORMAL_FLAG  varchar(200),
+sourcefilename varchar(200)
+);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------insert into rstage table 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+insert into raw_tfk.rstag_traffk_20160926_Ethos_questdiagnostics
+(
+CLIENT_ID,
+MPI,
+UNIQUE_ID,
+SSN,
+INSURANCE_ID,
+RELATION_CODE,
+LAST_NAME,
+FIRST_NAME,
+DOB,
+SEX,
+ADDRESS1,
+ADDRESS2,
+CITY,
+STATE,
+ZIP,
+LOCATION_CODE,
+CUSTOM1,
+AMENDED_RESULT,
+COLLECTION_DATE,
+RESULT_NAME,
+LOINC,
+REFERENCE_RANGE,
+OBSERVATION_VALUE,
+UNITS,
+ABNORMAL_FLAG,
+sourcefilename
+)
+
+select
+trim(split_part(data,',',1)) as  CLIENT_ID,
+trim(split_part(data,',',2)) as  MPI,
+trim(split_part(data,',',3)) as  UNIQUE_ID,
+trim(split_part(data,',',4)) as  SSN,
+trim(split_part(data,',',5)) as  INSURANCE_ID,
+trim(split_part(data,',',6)) as  RELATION_CODE,
+trim(split_part(data,',',7)) as  LAST_NAME,
+trim(split_part(data,',',8)) as  FIRST_NAME,
+trim(split_part(data,',',9)) as  DOB,
+trim(split_part(data,',',10)) as  SEX,
+trim(split_part(data,',',11)) as  ADDRESS1,
+trim(split_part(data,',',12)) as  ADDRESS2,
+trim(split_part(data,',',13)) as  CITY,
+trim(split_part(data,',',14)) as  STATE,
+trim(split_part(data,',',15)) as  ZIP,
+trim(split_part(data,',',16)) as  LOCATION_CODE,
+trim(split_part(data,',',17)) as  CUSTOM1,
+trim(split_part(data,',',18)) as  AMENDED_RESULT,
+trim(split_part(data,',',19)) as  COLLECTION_DATE,
+trim(split_part(data,',',20)) as  RESULT_NAME,
+trim(split_part(data,',',21)) as  LOINC,
+trim(split_part(data,',',22)) as  REFERENCE_RANGE,
+trim(split_part(data,',',23)) as  OBSERVATION_VALUE,
+trim(split_part(data,',',24)) as  UNITS,
+trim(split_part(data,',',25)) as  ABNORMAL_FLAG,
+'filename' as sourcefilename
+from raw_tfk.temp_traffk_20160926_Ethos_questdiagnostics;
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------create raw table 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+create table raw_tfk.raw_traffk_20160926_Ethos_questdiagnostics
+(
+CLIENT_ID  varchar(200),
+MPI  varchar(200),
+UNIQUE_ID  varchar(200),
+SSN  varchar(200),
+INSURANCE_ID  varchar(200),
+RELATION_CODE  varchar(200),
+LAST_NAME  varchar(200),
+FIRST_NAME  varchar(200),
+DOB  date,
+SEX  varchar(200),
+ADDRESS1  varchar(200),
+ADDRESS2  varchar(200),
+CITY  varchar(200),
+STATE  varchar(200),
+ZIP  varchar(200),
+LOCATION_CODE  varchar(200),
+CUSTOM1  varchar(200),
+AMENDED_RESULT  varchar(200),
+COLLECTION_DATE date,
+RESULT_NAME  varchar(200),
+LOINC  varchar(200),
+REFERENCE_RANGE  varchar(200),
+OBSERVATION_VALUE  varchar(200),
+UNITS  varchar(200),
+ABNORMAL_FLAG  varchar(200),
+sourcefilename varchar(200),
+import_date date
+);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------insert into raw table 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+insert into raw_tfk.raw_traffk_20160926_Ethos_questdiagnostics
+(
+CLIENT_ID,
+MPI,
+UNIQUE_ID,
+SSN,
+INSURANCE_ID,
+RELATION_CODE,
+LAST_NAME,
+FIRST_NAME,
+DOB,
+SEX,
+ADDRESS1,
+ADDRESS2,
+CITY,
+STATE,
+ZIP,
+LOCATION_CODE,
+CUSTOM1,
+AMENDED_RESULT,
+COLLECTION_DATE,
+RESULT_NAME,
+LOINC,
+REFERENCE_RANGE,
+OBSERVATION_VALUE,
+UNITS,
+ABNORMAL_FLAG,
+sourcefilename,
+import_date
+)
+
+select
+CLIENT_ID,
+MPI,
+UNIQUE_ID,
+SSN,
+INSURANCE_ID,
+RELATION_CODE,
+LAST_NAME,
+FIRST_NAME,
+cast(case when DOB='' then NULL else DOB end as date) as DOB,
+SEX,
+ADDRESS1,
+ADDRESS2,
+CITY,
+STATE,
+ZIP,
+LOCATION_CODE,
+CUSTOM1,
+AMENDED_RESULT,
+cast(case when COLLECTION_DATE='' then NULL else COLLECTION_DATE end as date) as COLLECTION_DATE,
+RESULT_NAME,
+LOINC,
+REFERENCE_RANGE,
+OBSERVATION_VALUE,
+UNITS,
+ABNORMAL_FLAG,
+sourcefilename,
+sysdate as import_date
+from raw_tfk.rstag_traffk_20160926_Ethos_questdiagnostics;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------grant to public 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+grant all on raw_tfk.raw_traffk_20160926_Ethos_questdiagnostics to public;
+
+

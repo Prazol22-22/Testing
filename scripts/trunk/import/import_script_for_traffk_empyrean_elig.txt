@@ -1,0 +1,93 @@
+drop table if exists raw_tfk.rtemp_ethos_empyrean_elig_20161025;
+create table raw_tfk.rtemp_ethos_empyrean_elig_20161025
+(
+data varchar(max)
+);
+
+copy raw_tfk.rtemp_ethos_empyrean_elig_20161025
+ from 
+'s3://incoming-das-scrub/traffk/20161025/Ethos/empyrean/EthosEnergy_ELIG_10202016.txt'
+
+credentials 'aws_access_key_id=****************;aws_secret_access_key=***************************'
+delimiter '~';
+
+drop table if exists raw_tfk.raw_ethos_empyrean_elig_20161025;
+create table raw_tfk.raw_ethos_empyrean_elig_20161025
+(
+MEMBER_ID	varchar(200),
+MBR_ID	varchar(200),
+MEMBER_SSN	varchar(200),
+FIRST_NAME	varchar(200),
+LAST_NAME	varchar(200),
+GENDER	varchar(200),
+DATE_OF_BIRTH	varchar(200),
+ZIP	varchar(200),
+RELATIONSHIP_CODE	varchar(200),
+PLAN_TYPE_CODE	varchar(200),
+CARRIER_ID	varchar(200),
+COVERAGE_TYPE_CODE	varchar(200),
+PLAN_ID	varchar(200),
+EMP_GROUP_ID	varchar(200),
+DIVISION_ID	varchar(200),
+COBRA_CODE	varchar(200),
+MEDICAL_EFF_DATE	varchar(200),
+MEDICAL_TERM_DATE	varchar(200),
+sourcefilename varchar(200)
+);
+
+insert into raw_tfk.raw_ethos_empyrean_elig_20161025
+(
+MEMBER_ID,
+MBR_ID,
+MEMBER_SSN,
+FIRST_NAME,
+LAST_NAME,
+GENDER,
+DATE_OF_BIRTH,
+ZIP,
+RELATIONSHIP_CODE,
+PLAN_TYPE_CODE,
+CARRIER_ID,
+COVERAGE_TYPE_CODE,
+PLAN_ID,
+EMP_GROUP_ID,
+DIVISION_ID,
+COBRA_CODE,
+MEDICAL_EFF_DATE,
+MEDICAL_TERM_DATE,
+sourcefilename
+)
+
+select
+trim(split_part(data,'|',1)) as MEMBER_ID,
+trim(split_part(data,'|',2)) as MBR_ID,
+trim(split_part(data,'|',3)) as MEMBER_SSN,
+trim(split_part(data,'|',4)) as FIRST_NAME,
+trim(split_part(data,'|',5)) as LAST_NAME,
+trim(split_part(data,'|',6)) as GENDER,
+trim(split_part(data,'|',7)) as DATE_OF_BIRTH,
+trim(split_part(data,'|',8)) as ZIP,
+trim(split_part(data,'|',9)) as RELATIONSHIP_CODE,
+trim(split_part(data,'|',10)) as PLAN_TYPE_CODE,
+trim(split_part(data,'|',11)) as CARRIER_ID,
+trim(split_part(data,'|',12)) as COVERAGE_TYPE_CODE,
+trim(split_part(data,'|',13)) as PLAN_ID,
+trim(split_part(data,'|',14)) as EMP_GROUP_ID,
+trim(split_part(data,'|',15)) as DIVISION_ID,
+trim(split_part(data,'|',16)) as COBRA_CODE,
+trim(split_part(data,'|',17)) as MEDICAL_EFF_DATE,
+trim(split_part(data,'|',18)) as MEDICAL_TERM_DATE,
+'EthosEnergy_ELIG_10202016.txt' as sourcefilename
+from raw_tfk.rtemp_ethos_empyrean_elig_20161025;
+
+
+select date_of_birth from raw_tfk.raw_ethos_empyrean_eligibility;
+select top 10 * from raw_tfk.raw_ethos_empyrean_elig_20161025;
+
+delete from raw_tfk.raw_ethos_empyrean_elig_20161025 where medical_eff_date='MEDICAL EFF DATE'
+
+--select * into raw_tfk.raw_ethos_empyrean_eligibility_merge
+--from raw_tfk.raw_ethos_empyrean_eligibility;
+
+--insert into  raw_tfk.raw_ethos_empyrean_eligibility_merge
+--select * from raw_tfk.raw_ethos_empyrean_elig_20161025;

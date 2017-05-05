@@ -1,0 +1,66 @@
+create table raw_tfk.raw_bcbsal_uhaul_medical
+(
+SubID_Encrypt	varchar(200),
+MbrID_Encrypt	varchar(200),
+MbrFirst	varchar(200),
+MbrLast	varchar(200),
+SSN	varchar(200),
+MbrGndr	varchar(200),
+MbrYOB	varchar(200),
+Relationship	varchar(200),
+GroupID	varchar(200),
+GroupName	varchar(200),
+GrpDiv	varchar(200),
+Plan	varchar(200),
+ClmType	varchar(200),
+LineStatus	varchar(200),
+TOB	varchar(200),
+TOBDesc	varchar(200),
+ClmCore	varchar(200),
+ClmSeq	varchar(200),
+ClmLn	varchar(200),
+	varchar(200),
+POSDesc	varchar(200),
+DRGCd	varchar(200),
+Diag1	varchar(200),
+Diag2	varchar(200),
+Diag3	varchar(200),
+Diag4	varchar(200),
+Diag5	varchar(200),
+SurgProc1Cd	varchar(200),
+SurgProc2Cd	varchar(200),
+SurgProc3Cd	varchar(200),
+SurgProc4Cd	varchar(200),
+SurgProc5Cd	varchar(200),
+Procedure	varchar(200),
+ProcMod1Cd	varchar(200),
+RevCd	varchar(200),
+SvcUnits	varchar(200),
+PrvID	varchar(200),
+ProvSpecCd	varchar(200),
+ProvSpecDesc	varchar(200),
+ProvTypeCd	varchar(200),
+ProvTypeDesc	varchar(200),
+ProvState	varchar(200),
+ProvZip3	varchar(200),
+NetworkInd	varchar(200),
+FirstSvcDt	varchar(200),
+LastSvcDt	varchar(200),
+AdmDt	varchar(200),
+DischDt	varchar(200),
+DischStatCd	varchar(200),
+DischgStatDesc	varchar(200),
+PaidMonth	varchar(200),
+PdAmt	varchar(200),
+ICDVersion	varchar(200)
+
+);
+
+set query_group to 'copy_G';
+copy raw_tfk.raw_bcbsal_uhaul_medical  from 
+--s3 location
+'s3://incoming-das-scrub/traffk/20161103/uhaul/azblue/UHAUL_Medical_201609.txt'
+credentials 'aws_access_key_id=xx;aws_secret_access_key=xx'
+delimiter '|'
+;
+reset query_group;

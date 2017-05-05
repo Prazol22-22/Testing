@@ -1,0 +1,36 @@
+create table raw_tfk.raw_bcbsal_uhaul_eligibility
+(
+SubID_Encrypt	varchar(200),
+MbrID_Encrypt	varchar(200),
+MbrFirst	varchar(200),
+MbrLast	varchar(200),
+SSN	varchar(200),
+GroupID	varchar(200),
+GroupName	varchar(200),
+GrpDiv	varchar(200),
+Plan	varchar(200),
+Deductible	varchar(200),
+RetireeInd	varchar(200),
+CobraInd	varchar(200),
+MbrGndr	varchar(200),
+MbrYOB	varchar(200),
+Relationship	varchar(200),
+HomeState	varchar(200),
+HomeZip	varchar(200),
+SegmentEffDt	varchar(200),
+SegmentEndDt	varchar(200),
+ContractType	varchar(200),
+DrugInd	varchar(200)
+);
+
+
+
+set query_group to 'copy_G';
+copy raw_tfk.raw_bcbsal_uhaul_eligibility  from 
+--s3 location
+'s3://incoming-das-scrub/traffk/20161103/uhaul/azblue/UHAUL_Eligibility_201609.txt'
+credentials 'aws_access_key_id=xx;
+aws_secret_access_key=xx'
+delimiter '|'
+;
+reset query_group;

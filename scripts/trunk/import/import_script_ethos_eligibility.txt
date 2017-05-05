@@ -1,0 +1,238 @@
+
+/* *********************** Import script of Traffk for RedShift ********************************* 
+client name		:	Traffk
+client id		:	
+File Type		:	Eligibility
+Layout			:	Fixed length
+Create date		:	
+Create by		:	Diya Shrestha	
+****************************************************** */
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------create temp table
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+drop table if exists raw_tfk.rtemp_ethos_aetna_elig;
+create table raw_tfk.rtemp_ethos_aetna_elig
+(
+rawdata varchar(max)
+);
+
+copy raw_tfk.rtemp_ethos_aetna_elig
+ from 
+'s3://incoming-das-scrub/traffk/20160926/Ethos/aetna/90932834-ELIG_CLMDATA___20140701_20160831.txt'
+
+credentials 'aws_access_key_id=***************;aws_secret_access_key=******************';
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------create raw table
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+drop table if exists raw_tfk.raw_ethos_aetna_elig;
+create table raw_tfk.raw_ethos_aetna_elig
+(
+eff_dt	varchar(200),
+individual_id	varchar(200),
+emp_src_member_id	varchar(200),
+msk_prefix_nm	varchar(200),
+member_last_nm	varchar(200),
+member_first_nm	varchar(200),
+suffix_nm	varchar(200),
+mbr_gender_cd	varchar(200),
+birth_dt	varchar(200),
+member_address_line_1_txt	varchar(200),
+member_address_line_2_txt	varchar(200),
+member_city_nm	varchar(200),
+member_state_postal_cd	varchar(200),
+member_county_cd	varchar(200),
+member_zip_cd	varchar(200),
+area_cd__pfx_cd__sfx_cd	varchar(200),
+src_member_id	varchar(200),
+member_id	varchar(200),
+mbr_rtp_type_cd	varchar(200),
+member_ssn_nbr	varchar(200),
+ps_unique_id	varchar(200),
+customer_nbr	varchar(200),
+group_nbr	varchar(200),
+subgroup_nbr	varchar(200),
+account_nbr	varchar(200),
+subscriber_last_nm	varchar(200),
+subscriber_first_nm	varchar(200),
+gender_cd	varchar(200),
+subscriber_brth_dt	varchar(200),
+subs_zip_cd	varchar(200),
+subs_st_postal_cd	varchar(200),
+subscriber_county_cd	varchar(200),
+subscriber_ssn_nbr	varchar(200),
+file_id	varchar(200),
+plsp_prod_cd	varchar(200),
+product_ln_cd	varchar(200),
+business_ln_cd	varchar(200),
+fund_ctg_cd	varchar(200),
+coverage_type_cd	varchar(200),
+ntwk_srv_area_id	varchar(200),
+cfo_cd	varchar(200),
+cust_segment_cd	varchar(200),
+cust_subseg_cd	varchar(200),
+filler_1	varchar(200),
+drug_ind	varchar(200),
+sbstnc_abuse_ind	varchar(200),
+filler_2	varchar(200),
+mental_health_ind	varchar(200),
+orig_covg_eff_dt	varchar(200),
+covg_cncl_dt	varchar(200),
+pcp_tax_id_nbr	varchar(200),
+pcp_prvdr_id	varchar(200),
+pcp_print_nm	varchar(200),
+pcp_address_line_1_txt	varchar(200),
+pcp_address_line_2_txt	varchar(200),
+pcp_city_nm	varchar(200),
+pcp_state_postal_cd	varchar(200),
+pcp_zip_cd	varchar(200),
+pcp_npi_no	varchar(200),
+pcp_specialty_ctg_cd	varchar(200),
+xchng_id	varchar(200),
+blank	varchar(200),
+hardcoded_value_of_x	varchar(200),
+sourcefilename varchar(200)
+);
+
+insert into raw_tfk.raw_ethos_aetna_elig
+(
+eff_dt,
+individual_id,
+emp_src_member_id,
+msk_prefix_nm,
+member_last_nm,
+member_first_nm,
+suffix_nm,
+mbr_gender_cd,
+birth_dt,
+member_address_line_1_txt,
+member_address_line_2_txt,
+member_city_nm,
+member_state_postal_cd,
+member_county_cd,
+member_zip_cd,
+area_cd__pfx_cd__sfx_cd,
+src_member_id,
+member_id,
+mbr_rtp_type_cd,
+member_ssn_nbr,
+ps_unique_id,
+customer_nbr,
+group_nbr,
+subgroup_nbr,
+account_nbr,
+subscriber_last_nm,
+subscriber_first_nm,
+gender_cd,
+subscriber_brth_dt,
+subs_zip_cd,
+subs_st_postal_cd,
+subscriber_county_cd,
+subscriber_ssn_nbr,
+file_id,
+plsp_prod_cd,
+product_ln_cd,
+business_ln_cd,
+fund_ctg_cd,
+coverage_type_cd,
+ntwk_srv_area_id,
+cfo_cd,
+cust_segment_cd,
+cust_subseg_cd,
+filler_1,
+drug_ind,
+sbstnc_abuse_ind,
+filler_2,
+mental_health_ind,
+orig_covg_eff_dt,
+covg_cncl_dt,
+pcp_tax_id_nbr,
+pcp_prvdr_id,
+pcp_print_nm,
+pcp_address_line_1_txt,
+pcp_address_line_2_txt,
+pcp_city_nm,
+pcp_state_postal_cd,
+pcp_zip_cd,
+pcp_npi_no,
+pcp_specialty_ctg_cd,
+xchng_id,
+blank,
+hardcoded_value_of_x,
+sourcefilename
+)
+
+select 
+trim(substring(rawdata,1,7)) as eff_dt,
+trim(substring(rawdata,8,21)) as individual_id,
+trim(substring(rawdata,29,23)) as emp_src_member_id,
+trim(substring(rawdata,52,6)) as msk_prefix_nm,
+trim(substring(rawdata,58,31)) as member_last_nm,
+trim(substring(rawdata,89,31)) as member_first_nm,
+trim(substring(rawdata,120,6)) as suffix_nm,
+trim(substring(rawdata,126,2)) as mbr_gender_cd,
+trim(substring(rawdata,128,11)) as birth_dt,
+trim(substring(rawdata,139,36)) as member_address_line_1_txt,
+trim(substring(rawdata,175,36)) as member_address_line_2_txt,
+trim(substring(rawdata,211,31)) as member_city_nm,
+trim(substring(rawdata,242,3)) as member_state_postal_cd,
+trim(substring(rawdata,245,6)) as member_county_cd,
+trim(substring(rawdata,251,6)) as member_zip_cd,
+trim(substring(rawdata,257,11)) as area_cd__pfx_cd__sfx_cd,
+trim(substring(rawdata,268,23)) as src_member_id,
+trim(substring(rawdata,291,21)) as member_id,
+trim(substring(rawdata,312,2)) as mbr_rtp_type_cd,
+trim(substring(rawdata,314,12)) as member_ssn_nbr,
+trim(substring(rawdata,326,17)) as ps_unique_id,
+trim(substring(rawdata,343,9)) as customer_nbr,
+trim(substring(rawdata,352,9)) as group_nbr,
+trim(substring(rawdata,361,9)) as subgroup_nbr,
+trim(substring(rawdata,370,6)) as account_nbr,
+trim(substring(rawdata,376,31)) as subscriber_last_nm,
+trim(substring(rawdata,407,31)) as subscriber_first_nm,
+trim(substring(rawdata,438,2)) as gender_cd,
+trim(substring(rawdata,440,11)) as subscriber_brth_dt,
+trim(substring(rawdata,451,6)) as subs_zip_cd,
+trim(substring(rawdata,457,3)) as subs_st_postal_cd,
+trim(substring(rawdata,460,6)) as subscriber_county_cd,
+trim(substring(rawdata,466,12)) as subscriber_ssn_nbr,
+trim(substring(rawdata,478,3)) as file_id,
+trim(substring(rawdata,481,3)) as plsp_prod_cd,
+trim(substring(rawdata,484,3)) as product_ln_cd,
+trim(substring(rawdata,487,3)) as business_ln_cd,
+trim(substring(rawdata,490,2)) as fund_ctg_cd,
+trim(substring(rawdata,492,2)) as coverage_type_cd,
+trim(substring(rawdata,494,6)) as ntwk_srv_area_id,
+trim(substring(rawdata,500,7)) as cfo_cd,
+trim(substring(rawdata,507,4)) as cust_segment_cd,
+trim(substring(rawdata,511,4)) as cust_subseg_cd,
+trim(substring(rawdata,515,2)) as filler_1,
+trim(substring(rawdata,517,2)) as drug_ind,
+trim(substring(rawdata,519,2)) as sbstnc_abuse_ind,
+trim(substring(rawdata,521,2)) as filler_2,
+trim(substring(rawdata,523,2)) as mental_health_ind,
+trim(substring(rawdata,525,11)) as orig_covg_eff_dt,
+trim(substring(rawdata,536,11)) as covg_cncl_dt,
+trim(substring(rawdata,547,10)) as pcp_tax_id_nbr,
+trim(substring(rawdata,557,8)) as pcp_prvdr_id,
+trim(substring(rawdata,565,41)) as pcp_print_nm,
+trim(substring(rawdata,606,36)) as pcp_address_line_1_txt,
+trim(substring(rawdata,642,36)) as pcp_address_line_2_txt,
+trim(substring(rawdata,678,31)) as pcp_city_nm,
+trim(substring(rawdata,709,3)) as pcp_state_postal_cd,
+trim(substring(rawdata,712,6)) as pcp_zip_cd,
+trim(substring(rawdata,718,23)) as pcp_npi_no,
+trim(substring(rawdata,741,6)) as pcp_specialty_ctg_cd,
+trim(substring(rawdata,747,10)) as xchng_id,
+trim(substring(rawdata,757,243)) as blank,
+trim(substring(rawdata,1000,1)) as hardcoded_value_of_x,
+'ELIG_CLMDATA___20140701_20160831.txt' as sourcefilename
+from raw_tfk.rtemp_ethos_aetna_elig;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------grant on  raw table
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ grant all on  raw_tfk.raw_ethos_aetna_elig to public;
+

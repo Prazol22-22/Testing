@@ -1,0 +1,379 @@
+<QuerySet>
+  <Query IsView="False" IsSP="False">
+    <File>../../../../../data/workforce/traffk/topcon/Topcon_MM.sql</File>
+    <Name>Topcon_MM</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>select top 10 * from raw_tfk.raw_ethos_aetna_medical
+
+
+select distinct ICD10Indicator,diagnosiscode1,  diagnosiscode2,  diagnosiscode3 diagnosiscode4, diagnosiscode5, diagnosiscode6,  diagnosiscode7,diagnosiscode8,diagnosiscode9,diagnosiscode10 from  raw_tfk.raw_ethos_aetna_medical;
+
+
+select top 10 * from master_deerwalk.dw_master_diagnosis
+where replace(code,'.','')in
+('E871','E876')
+
+
+select a.ICD10Indicator,a.diagnosiscode1,  a.diagnosiscode2,  a.diagnosiscode3, a.diagnosiscode4, a.diagnosiscode5, a.diagnosiscode6,  a.diagnosiscode7,a.diagnosiscode8,a.diagnosiscode9,a.diagnosiscode10,b.code,b.description,b.icd10flag
+from raw_tfk.raw_ethos_aetna_medical a
+ join  master_deerwalk.dw_master_diagnosis b
+on a.diagnosiscode1 = b.code
+where b.code is not null;
+
+
+select distinct svc_diag_1_code from stage1_tfk_epc_20170102_i6.perm_stage1_med_claims
+where
+ replace(svc_diag_1_code,'.','')= 'E872' 
+
+
+</SQL>
+    <Name>Tab 7</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>select 
+a.*
+
+select 
+--(
+--distinct --coalesce(b.code,b.procedure_type,c.code,c.procedure_type,d.code,d.procedure_type,e.code,e.procedure_type,f.code,f.procedure_type,g.code,g.procedure_type)
+--)
+--distinct proc_cd,HCPCS
+--coalesce(b.procedure_type,l.procedure_type,c.procedure_type,m.procedure_type)
+--,count(*),
+pos,b.grouper,l.grouper,c.grouper,m.grouper
+--count(distinct coalesce(a.proc_cd,a.hcpcs)),sum(cast(a.sactpaid  as float))
+from  raw_tfk.raw_bsca_topcon_medical_20170112 a
+left join master_deerwalk.dw_master_procedure b
+on
+a.proc_cd = b.code
+and b.procedure_type = 'CPT4'
+left join master_deerwalk.dw_master_procedure l
+on
+a.HCPCS = l.code
+and l.procedure_type = 'CPT4'
+left join  master_deerwalk.dw_master_procedure c
+on
+a.proc_cd = c.code
+and c.procedure_type = 'HCPCS'
+left join  master_deerwalk.dw_master_procedure m
+on
+a.HCPCS = m.code
+and m.procedure_type = 'HCPCS'
+--left join master_deerwalk.dw_master_procedure d
+--on
+--a.icd10_primary_dx = d.code
+--and d.procedure_type = 'ICD9'
+--left join master_deerwalk.dw_master_procedure e
+--on
+--a.icd10_primary_dx = e.code
+--and e.procedure_type = 'ICD10'
+--left join master_deerwalk.dw_master_procedure f
+--on
+--a.icd10_secondary_dx = f.code
+--and f.procedure_type = 'ICD9'
+--left join master_deerwalk.dw_master_procedure g
+--on
+--a.icd10_secondary_dx = g.code
+--and g.procedure_type = 'ICD10'
+--
+--left join master_deerwalk.dw_master_procedure h
+--on
+--'R'||right(a.icd10_primary_dx,3) = h.code
+--and h.procedure_type not like '%DRG%' 
+--left join master_deerwalk.dw_master_procedure i
+--on
+--'R'||right(a.icd10_secondary_dx,3) = i.code
+--and i.procedure_type not like '%DRG%' 
+--
+--left join master_deerwalk.dw_master_procedure j
+--on
+--right(a.icd10_primary_dx ,3)= j.code
+--and j.procedure_type= 'DRG 27'
+--
+--left join master_deerwalk.dw_master_procedure k
+--on
+--right(a.icd10_secondary_dx ,3)= k.code
+--and k.procedure_type= 'DRG 27'
+where nvl(b.code,l.code,c.code,m.code) is  not  null
+and (b.grouper = 'Emergency Room'
+or l.grouper = 'Emergency Room'
+or c.grouper ='Emergency Room'
+or m.grouper = 'Emergency Room')
+group by 1
+,2
+
+--where nvl(b.code,l.code,c.code,m.code,d.code,e.code,f.code,g.code,h.code,i.code,j.code,k.code) is   null
+limit 1000;
+group by 1;
+
+select * from master_deerwalk.dw_master_diagnosis
+where LEFT(code,1) = 'R'
+limit 1000;
+
+
+select distinct proc_cd,HCPCS ,icd10_primary_dx, icd10_secondary_dx
+ from raw_tfk.raw_bsca_topcon_medical_20170112;
+select * from master_deerwalk.dw_master_procedure
+where code in
+('80053','85025','J0690')
+
+
+select * from master_deerwalk.dw_master_diagnosis
+WHERE REPLACE(CODE ,'.','')IN 
+(
+'R0600','R748','R0982')
+
+
+
+
+select * from master_deerwalk.dw_master_procedure
+where len(code) = 5
+and left(code,2) = '00'</SQL>
+    <Name>Tab 9</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>select * from raw_tfk.temp_bsca_topcon_eligibility_20170112;
+raw_tfk.temp_bsca_topcon_rx_20170112
+
+
+'BSCA_Topcon_Enrol_Jan14-Nov16.txt'</SQL>
+    <Name>Tab 2</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <File>../../../../../data/workforce/traffk/topcon/Topcon_Medical.sql</File>
+    <Name>Topcon_Medical</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>select count (distinct BILLPROVSNPI), count(distinct PROVNAME) from raw_tfk.raw_bsca_topcon_medical_20170112;
+select distinct BILLPROVSNPI, PROVNAME from raw_tfk.raw_bsca_topcon_medical_20170112;
+BILLPROVSNPI
+
+Select admittype,count(*)	from raw_tfk.raw_bsca_topcon_medical_20170112
+group by 1;
+
+
+</SQL>
+    <Name>Tab 4</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <File>../../../../../data/workforce/traffk/topcon/Topcon_Eligibility.sql</File>
+    <Name>Topcon_Eligibility</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <File>../../../../../data/workforce/traffk/topcon/DA_Checklist.sql</File>
+    <Name>DA_Checklist</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>select top 100 * from raw_tfk.raw_bsca_topcon_rx_20170112 
+
+select distinct provname from raw_tfk.raw_bsca_topcon_rx_20170112 
+
+'16714036304'
+
+
+select * from master_deerwalk.dw_master_dea
+where dea_reg_number in 
+(
+'BR5617898','BN1375484','BN9644053','BW5260346')
+
+
+select * from raw_tfk.raw_bsca_topcon_medical_claims_20170112
+where pos = '7'
+or pos = '1'
+
+
+</SQL>
+    <Name>Tab 10</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>
+drop table raw_tfk.raw_traffk_topcon_pos_analysis;
+
+select a.*,
+coalesce(b.procedure_type,l.procedure_type,c.procedure_type,m.procedure_type,n.procedure_type) as procedure_type--, sum(cast(a.sactpaid  as float)),count(*)
+--distinct proc_cd,hcpcs
+into raw_tfk.raw_traffk_topcon_pos_analysis
+from  raw_tfk.raw_bsca_topcon_medical_20170112 a
+left join master_deerwalk.dw_master_procedure b
+on
+a.proc_cd = b.code
+and b.procedure_type = 'CPT4'
+and a.typeofbill = '00'
+left join master_deerwalk.dw_master_procedure l
+on
+a.HCPCS = l.code
+and l.procedure_type = 'CPT4'
+left join  master_deerwalk.dw_master_procedure c
+on
+a.proc_cd = c.code
+and c.procedure_type = 'HCPCS'
+left join  master_deerwalk.dw_master_procedure m
+on
+a.HCPCS = m.code
+and m.procedure_type = 'HCPCS'
+left join  master_deerwalk.dw_master_procedure n
+on
+ 'R'||right(a.proc_cd,3)= n.code
+ and n.procedure_type like '%Rev%'
+ and a.typeofbill &lt;&gt;'00'
+--where nvl(b.code,l.code,c.code,m.code,n.code) is not  null
+group by 1
+,2
+
+
+select distinct  typeofbill from raw_tfk.raw_bsca_topcon_medical_20170112 
+
+select distinct procedure_type  from master_deerwalk.dw_master_procedure
+
+select top 100 * from raw_tfk.raw_traffk_topcon_pos_analysis
+
+
+alter table 
+raw_tfk.raw_traffk_topcon_pos_analysis
+add column rollup_pos varchar(2);
+
+
+alter table 
+raw_tfk.raw_traffk_topcon_pos_analysis
+add column left2billtype varchar(2);
+
+--update raw_tfk.raw_traffk_topcon_pos_analysis
+--set rollup_pos = 
+
+update raw_tfk.raw_traffk_topcon_pos_analysis
+set left2billtype = left(trim(typeofbill),2);
+
+update raw_tfk.raw_traffk_topcon_pos_analysis
+set rollup_pos = b.Rollup_POS
+from  raw_tfk.raw_topcon_pos_billtype_crosswalk b
+where left2billtype = trim(b.ToB_POS);
+
+--select distinct rollup_pos,left2billtype from raw_tfk.raw_traffk_topcon_pos_analysis;
+
+update raw_tfk.raw_traffk_topcon_pos_analysis 
+set rollup_pos = b.Rollup_POS
+from raw_tfk.raw_topcon_pos b
+where raw_traffk_topcon_pos_analysis.pos = b.code
+and raw_traffk_topcon_pos_analysis.rollup_pos is null
+;
+
+select  rollup_pos,--left2billtype,
+sum(cast(sactpaid as float)),count(*) from raw_tfk.raw_traffk_topcon_pos_analysis
+group by 1
+
+select procedure_type,sum(rev_paid_amt) from  stage1_tfk_epc_20170201_i7.perm_stage1_med_claims
+where ins_emp_group_name like '%TOPCON%'
+group by 1
+
+"1. If there is a valid value then use it.
+2. If not, match Provider NPI on the claim with NPI on Master NPI Table, populate Claim Type from Master NPI table if there is a match.
+3. If not, use the following logic:
+
+If svc_pos_code has the following values: '03', '04', '06', '08', '09', '11', '17', '20', '49', '50', '53', '60', '71', '72',' 81') then claim type is PROF
+
+If svc_pos_code has the follwoing values: '12', '13', '14', '16', '21', '22' , '23', '24', '25', '26', '31', '33', '34', '51', '52', '54', '55', '56', '57', '61', '62', '65', '99'
+and svc_procedure_type is 'CPT4' then populate as ‘PROF’
+
+If neither of the above is true populate claim type as 'UB04'.
+
+
+"
+
+alter table 
+raw_tfk.raw_traffk_topcon_pos_analysis
+add column claimtype varchar(20);
+
+update raw_tfk.raw_traffk_topcon_pos_analysis 
+set claimtype = 'UB04';
+
+
+update raw_tfk.raw_traffk_topcon_pos_analysis 
+set claimtype = 'PROF'
+where 
+ROLLUP_pos in
+('03', '04', '06', '08', '09', '11', '17', '20', '49', '50', '53', '60', '71', '72','81');
+
+
+update raw_tfk.raw_traffk_topcon_pos_analysis 
+set claimtype = 'PROF'
+where rollup_pos in
+('12', '13', '14', '16', '21', '22' , '23', '24', '25', '26', '31', '33', '34', '51', '52', '54', '55', '56', '57', '61', '62', '65', '99')
+and procedure_type = 'CPT4';
+
+
+
+update raw_tfk.raw_traffk_topcon_pos_analysis 
+set claimtype = b.billtype
+from master_deerwalk.dw_master_npi b
+where trim(billprovsnpi )= b.npi;
+
+
+select claimtype,count(*),sum(cast(sactpaid as float)) from raw_tfk.raw_traffk_topcon_pos_analysis 
+group by 1;
+
+select rev_claim_type,sum(rev_paid_amt),count(*) from  stage1_tfk_epc_20170201_i7.perm_stage1_med_claims
+where ins_emp_group_name like '%TOPCON%'
+group by 1;
+
+--select distinct claimtype from raw_tfk.raw_traffk_topcon_pos_analysis 
+--
+--update raw_tfk.raw_traffk_topcon_pos_analysis 
+--set claimtype = 'UB04'
+--where claimtype is null;
+
+select  procedure_type,--left2billtype,
+sum(cast(sactpaid as float)),count(*) from raw_tfk.raw_traffk_topcon_pos_analysis
+group by 1;
+
+select svc_procedure_type,sum(rev_paid_amt),count(*) from  stage1_tfk_epc_20170201_i7.perm_stage1_med_claims
+where ins_emp_group_name like '%TOPCON%'
+group by 1;
+
+
+
+select distinct rev_claim_id, rev_claim_line_id from  stage1_tfk_epc_20170201_i7.perm_stage1_med_claims
+where ins_emp_group_name like '%TOPCON%' limit 1000
+</SQL>
+    <Name>Tab 11</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>create table raw_tfk.raw_topcon_pos_billtype_crosswalk
+(
+ToB_POS	varchar(200),
+Type_of_Bill  	varchar(200),
+ Type_of_Bill_Position_1  	varchar(200),
+ Type_of_Bill_Position_2	varchar(200),
+Rollup_POS	varchar(200),
+Description	varchar(200)
+);
+
+copy raw_tfk.raw_topcon_pos_billtype_crosswalk
+ from 
+'s3://dasscrubinput/TFK/DA/Topcon/pos_crosswalk/topcon_billtype_pos.txt'
+credentials 'aws_access_key_id=AKIAJGH5J2R672T42BBA;aws_secret_access_key=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'
+--credentials 'aws_access_key_id=AKIAJYEJXTRP7LIYNHFQ;aws_secret_access_key=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'
+delimiter ';';
+
+
+create table raw_tfk.raw_topcon_pos
+(
+Code 	varchar(200),
+raw_Description	varchar(200),
+Rollup_POS	varchar(200),
+Description	varchar(200)
+);
+
+copy raw_tfk.raw_topcon_pos
+ from 
+'s3://dasscrubinput/TFK/DA/Topcon/pos_crosswalk/pos_crosswalk.txt'
+credentials 'aws_access_key_id=AKIAJGH5J2R672T42BBA;aws_secret_access_key=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'
+--credentials 'aws_access_key_id=AKIAJYEJXTRP7LIYNHFQ;aws_secret_access_key=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'
+delimiter ';';
+
+
+select * from raw_tfk.raw_topcon_pos
+</SQL>
+    <Name>Tab 12</Name>
+  </Query>
+</QuerySet>
